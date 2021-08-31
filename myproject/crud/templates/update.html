@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	{% if user.is_authenticated %}
+		<div class="container mt-3">
+			
+			<h4>Update </h4>
+			<hr>
+			<form action="/update/{{student.id}}" method="POST">
+				{% csrf_token %}
+				<div class="form-group">
+					<label for="">ID</label>
+					<input type="text" class="form-control" value="{{student.sid}}" name="sid">
+				</div>
+				<div class="form-group">
+					<label for="">Name</label>
+					<input type="text" class="form-control" value="{{student.sname}}" name="sname">
+				</div>
+				<div class="form-group">
+					<label for="">Contact</label>
+					<input type="text" class="form-control" value="{{student.scontact}}" name="scontact">
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary" type="submit">Update record</button>
+					<a href="{% url 'show' %}" class="btn btn-info">Show Details</a>
+				</div>
+			</form>
+		</div>
+	{% else %}
+			<a href="{% url 'login_url' %}">Login</a>
+			<a href="{% url 'register_url' %}">Register</a>
+
+	{% endif %}
+
+
+ {% endblock content %}

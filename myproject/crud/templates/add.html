@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	{% if user.is_authenticated %}
+		<div class="container mt-3">
+			
+			<h4>Add New </h4>
+			<hr>
+			<form action="" method="POST">
+				{% csrf_token %}
+				<div class="form-group">
+					<label for="">ID</label>
+					<input type="text" class="form-control" name="sid">
+				</div>
+				<div class="form-group">
+					<label for="">Name</label>
+					<input type="text" class="form-control" name="sname">
+				</div>
+				<div class="form-group">
+					<label for="">Contact</label>
+					<input type="text" class="form-control" name="scontact">
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary" type="submit"> Add record</button>
+					<a href="{% url 'show' %}" class="btn btn-info">Show Details</a>
+				</div>
+			</form>
+		</div>
+	{% else %}
+			<a href="{% url 'login_url' %}">Login</a>
+			<a href="{% url 'register_url' %}">Register</a>
+
+	{% endif %}
+
+ {% endblock content %}
